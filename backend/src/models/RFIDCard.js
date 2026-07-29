@@ -157,10 +157,41 @@ async function generateCardsForAdmission(studentId) {
 // ---- Fallback: generate cards into local JSON ----
 function generateCardsFallback(studentId) {
   const data = loadFallback();
-  const mockParents = [
+  let mockParents = [
     { relation_type: 'FATHER', full_name: 'Father (Offline Mode)' },
     { relation_type: 'MOTHER', full_name: 'Mother (Offline Mode)' },
   ];
+
+  try {
+    const admissionsPath = path.join(__dirname, '../../data/fallback_admissions.json');
+    if (fs.existsSync(admissionsPath)) {
+      const fallbackData = JSON.parse(fs.readFileSync(admissionsPath, 'utf8'));
+      const student = fallbackData.admissions.find(a => a.studentId === studentId);
+      if (student) {
+        mockParents = [];
+        if (student.parentInfo?.father?.fullName) {
+          mockParents.push({ relation_type: 'FATHER', full_name: student.parentInfo.father.fullName });
+        }
+        if (student.parentInfo?.mother?.fullName) {
+          mockParents.push({ relation_type: 'MOTHER', full_name: student.parentInfo.mother.fullName });
+        }
+        if (student.guardianInfo?.guardianName) {
+          mockParents.push({ relation_type: 'GUARDIAN', full_name: student.guardianInfo.guardianName });
+        }
+        if (student.guardianInfo?.guardian2Name) {
+          mockParents.push({ relation_type: 'GUARDIAN2', full_name: student.guardianInfo.guardian2Name });
+        }
+        if (mockParents.length === 0) {
+           mockParents = [
+             { relation_type: 'FATHER', full_name: 'Father (Offline Mode)' },
+             { relation_type: 'MOTHER', full_name: 'Mother (Offline Mode)' },
+           ];
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('⚠️ [MySQL Offline] Could not read fallback_admissions.json for real names.');
+  }
   const generated = [];
 
   for (const parent of mockParents) {
@@ -329,8 +360,23 @@ async function getStudentByApplicationNumber(applicationNumber) {
     return rows[0] || null;
   } catch (error) {
     if (isConnectionError(error)) {
-      // Fallback: try to find in rfid_fallback data or return a mock
-      console.warn('⚠️ [MySQL Offline] Cannot look up student, DB unavailable.');
+      console.warn('⚠️ [MySQL Offline] Reading student from fallback_admissions.json.');
+      try {
+        const admissionsPath = path.join(__dirname, '../../data/fallback_admissions.json');
+        if (fs.existsSync(admissionsPath)) {
+          const fallbackData = JSON.parse(fs.readFileSync(admissionsPath, 'utf8'));
+          const student = fallbackData.admissions.find(a => a.applicationNumber === applicationNumber);
+          if (student) {
+            return {
+              student_id: student.studentId,
+              full_name: student.studentInfo.fullName,
+              application_number: student.applicationNumber
+            };
+          }
+        }
+      } catch (err) {
+        console.warn('⚠️ [MySQL Offline] Fallback read failed', err);
+      }
       return null;
     }
     throw error;
