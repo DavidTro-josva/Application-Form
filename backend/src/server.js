@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // 1. Middlewares
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  origin: true,
   credentials: true,
 }));
 
@@ -73,16 +73,18 @@ app.use((req, res) => {
 // 5. Centralized Error Handling Middleware
 app.use(errorHandler);
 
-// 6. Start Server
-app.listen(PORT, async () => {
-  console.log('========================================================');
-  console.log(`🎒 TN HAPPY KIDS SCHOOL - ADMISSION API SERVER RUNNING`);
-  console.log(`🌐 Server URL       : http://localhost:${PORT}`);
-  console.log(`🔗 Health Check     : http://localhost:${PORT}/api/health`);
-  console.log(`📂 Static Uploads   : http://localhost:${PORT}/uploads`);
-  console.log('========================================================');
-  // Test DB connectivity
-  await testConnection();
-});
+// 6. Start Server (Only when executed directly, not when imported by serverless functions)
+if (require.main === module) {
+  app.listen(PORT, async () => {
+    console.log('========================================================');
+    console.log(`🎒 TN HAPPY KIDS SCHOOL - ADMISSION API SERVER RUNNING`);
+    console.log(`🌐 Server URL       : http://localhost:${PORT}`);
+    console.log(`🔗 Health Check     : http://localhost:${PORT}/api/health`);
+    console.log(`📂 Static Uploads   : http://localhost:${PORT}/uploads`);
+    console.log('========================================================');
+    // Test DB connectivity
+    await testConnection();
+  });
+}
 
 module.exports = app;
