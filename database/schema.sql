@@ -50,7 +50,7 @@ CREATE TABLE `students` (
 CREATE TABLE `parents` (
   `parent_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `student_id` INT UNSIGNED NOT NULL COMMENT 'Foreign Key to Students table',
-  `relation_type` ENUM('FATHER', 'MOTHER', 'GUARDIAN') NOT NULL COMMENT 'Parent Relationship Type',
+  `relation_type` ENUM('FATHER', 'MOTHER', 'GUARDIAN', 'GUARDIAN2') NOT NULL COMMENT 'Parent Relationship Type',
   `full_name` VARCHAR(150) NOT NULL COMMENT 'Parent Full Name',
   `occupation` VARCHAR(150) NOT NULL COMMENT 'Parent Occupation',
   `mobile_number` VARCHAR(15) NOT NULL COMMENT '10-digit mobile number',

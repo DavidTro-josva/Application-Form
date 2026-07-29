@@ -98,7 +98,7 @@ const validateAdmissionRules = [
     .notEmpty().withMessage('Mother Aadhaar Number is required')
     .matches(/^[0-9]{12}$/).withMessage('Mother Aadhaar Number must be exactly 12 digits'),
 
-  // Section 3: Guardian Details
+  // Section 3: Guardian Details (Primary / Guardian 1)
   body('guardianName')
     .trim()
     .notEmpty().withMessage('Guardian Full Name is required')
@@ -118,6 +118,24 @@ const validateAdmissionRules = [
     .trim()
     .notEmpty().withMessage('Guardian Aadhaar Number is required')
     .matches(/^[0-9]{12}$/).withMessage('Guardian Aadhaar Number must be exactly 12 digits'),
+
+  // Guardian 2 (Optional / Secondary Guardian)
+  body('guardian2Name')
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ min: 3 }).withMessage('Guardian 2 Full Name must be at least 3 characters')
+    .matches(/^[A-Za-z\s]+$/).withMessage('Guardian 2 Full Name can only contain alphabetic characters and spaces'),
+  body('guardian2Mobile')
+    .optional({ checkFalsy: true })
+    .trim()
+    .matches(/^[0-9]{10}$/).withMessage('Guardian 2 Mobile Number must be exactly 10 digits'),
+  body('guardian2Email')
+    .optional({ checkFalsy: true })
+    .isEmail().withMessage('Guardian 2 Email Address must be a valid email format'),
+  body('guardian2Aadhaar')
+    .optional({ checkFalsy: true })
+    .trim()
+    .matches(/^[0-9]{12}$/).withMessage('Guardian 2 Aadhaar Number must be exactly 12 digits'),
 
   // Section 4: Residential Address
   body('houseNumber')

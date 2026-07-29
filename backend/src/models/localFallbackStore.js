@@ -130,6 +130,14 @@ const createAdmission = async (data, files) => {
         aadhaarNumber: data.guardianAadhaar,
         photoPath: guardianPhotoPath,
       },
+      guardian2: data.guardian2Name ? {
+        fullName: data.guardian2Name,
+        occupation: data.guardian2Occupation || '',
+        mobileNumber: data.guardian2Mobile || '',
+        email: data.guardian2Email || null,
+        aadhaarNumber: data.guardian2Aadhaar || '',
+        photoPath: files?.guardian2Photo?.[0] ? `/uploads/${files.guardian2Photo[0].filename}` : null,
+      } : null,
     },
     residentialAddress: {
       houseNumber: data.houseNumber,
@@ -217,6 +225,9 @@ const updateAdmission = async (id, data, files) => {
   const guardianPhotoPath = files?.guardianPhoto?.[0]
     ? `/uploads/${files.guardianPhoto[0].filename}`
     : existing.parentInfo?.guardian?.photoPath || null;
+  const guardian2PhotoPath = files?.guardian2Photo?.[0]
+    ? `/uploads/${files.guardian2Photo[0].filename}`
+    : existing.parentInfo?.guardian2?.photoPath || null;
 
   const updatedAdmission = {
     ...existing,
@@ -255,6 +266,14 @@ const updateAdmission = async (id, data, files) => {
         aadhaarNumber: data.guardianAadhaar,
         photoPath: guardianPhotoPath,
       },
+      guardian2: data.guardian2Name ? {
+        fullName: data.guardian2Name,
+        occupation: data.guardian2Occupation || '',
+        mobileNumber: data.guardian2Mobile || '',
+        email: data.guardian2Email || null,
+        aadhaarNumber: data.guardian2Aadhaar || '',
+        photoPath: guardian2PhotoPath,
+      } : null,
     },
     residentialAddress: {
       houseNumber: data.houseNumber,

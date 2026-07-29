@@ -31,13 +31,21 @@ const initialFormValues = {
   motherAadhaar: '',
   motherPhoto: null,
 
-  // Section 3: Guardian Details
+  // Section 3: Guardian Details (Primary / Guardian 1)
   guardianName: '',
   guardianOccupation: '',
   guardianMobile: '',
   guardianEmail: '',
   guardianAadhaar: '',
   guardianPhoto: null,
+
+  // Section 3: Guardian Details 2 (Secondary / Guardian 2 - Optional)
+  guardian2Name: '',
+  guardian2Occupation: '',
+  guardian2Mobile: '',
+  guardian2Email: '',
+  guardian2Aadhaar: '',
+  guardian2Photo: null,
 
   // Section 4: Residential Address
   houseNumber: '',
@@ -59,6 +67,7 @@ export const useFormValidation = () => {
     fatherPhoto: null,
     motherPhoto: null,
     guardianPhoto: null,
+    guardian2Photo: null,
   });
 
   // Calculate age for display: returns "X Years, Y Months"
@@ -191,6 +200,31 @@ export const useFormValidation = () => {
       case 'guardianAadhaar':
         if (!value || !/^[0-9]{12}$/.test(value)) {
           return 'Guardian Aadhaar Number must be exactly 12 digits.';
+        }
+        return '';
+
+      // Guardian 2 (Optional)
+      case 'guardian2Name':
+        if (value && (value.trim().length < 3 || !/^[A-Za-z\s]+$/.test(value))) {
+          return 'Guardian 2 Name must be at least 3 characters and alphabetic.';
+        }
+        return '';
+
+      case 'guardian2Mobile':
+        if (value && !/^[0-9]{10}$/.test(value)) {
+          return 'Guardian 2 Mobile Number must be exactly 10 digits.';
+        }
+        return '';
+
+      case 'guardian2Email':
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return 'Please enter a valid email address for Guardian 2.';
+        }
+        return '';
+
+      case 'guardian2Aadhaar':
+        if (value && !/^[0-9]{12}$/.test(value)) {
+          return 'Guardian 2 Aadhaar Number must be exactly 12 digits.';
         }
         return '';
 

@@ -34,6 +34,8 @@ Submits a new student admission application along with Student, Father, and Moth
   - `studentPhoto` (Optional, max 1 image, JPG/PNG, max 5MB)
   - `fatherPhoto` (Optional, max 1 image, JPG/PNG, max 5MB)
   - `motherPhoto` (Optional, max 1 image, JPG/PNG, max 5MB)
+  - `guardianPhoto` (Optional, max 1 image, JPG/PNG, max 5MB)
+  - `guardian2Photo` (Optional, max 1 image, JPG/PNG, max 5MB)
 
 #### Form Data Parameters
 | Field | Type | Required | Description / Rules |
@@ -58,6 +60,11 @@ Submits a new student admission application along with Student, Father, and Moth
 | `guardianMobile` | String | **Yes** | Exactly 10 digits |
 | `guardianEmail` | String | No | Valid RFC email address |
 | `guardianAadhaar` | String | **Yes** | Exactly 12 digits |
+| `guardian2Name` | String | No | Guardian 2 Full Name (Optional, min 3 chars, alphabetic only) |
+| `guardian2Occupation` | String | No | Guardian 2 Occupation |
+| `guardian2Mobile` | String | No | Guardian 2 Mobile Number (10 digits) |
+| `guardian2Email` | String | No | Valid RFC email address |
+| `guardian2Aadhaar` | String | No | Guardian 2 Aadhaar Number (12 digits) |
 | `houseNumber` | String | **Yes** | Residential house or flat number |
 | `street` | String | **Yes** | Street name or road |
 | `area` | String | **Yes** | Area or locality |

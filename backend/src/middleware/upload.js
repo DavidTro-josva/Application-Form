@@ -63,6 +63,7 @@ const uploadAdmissionPhotos = upload.fields([
   { name: 'fatherPhoto', maxCount: 1 },
   { name: 'motherPhoto', maxCount: 1 },
   { name: 'guardianPhoto', maxCount: 1 },
+  { name: 'guardian2Photo', maxCount: 1 },
 ]);
 
 module.exports = {
