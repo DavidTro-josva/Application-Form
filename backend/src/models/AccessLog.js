@@ -5,7 +5,7 @@
  * Falls back to local JSON when MySQL is offline.
  * ========================================================
  */
-const pool = require('../config/db');
+const { pool } = require('../config/db');
 const path = require('path');
 const fs = require('fs');
 
