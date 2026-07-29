@@ -316,10 +316,32 @@ async function regenerateCard(cardId) {
   return generateCardsForAdmission(existing.student_id);
 }
 
+// =========================================================
+// LOOK UP STUDENT BY APPLICATION NUMBER (even with no cards)
+// =========================================================
+async function getStudentByApplicationNumber(applicationNumber) {
+  try {
+    const [rows] = await pool.execute(
+      `SELECT student_id, full_name, application_number
+         FROM students WHERE application_number = ? LIMIT 1`,
+      [applicationNumber]
+    );
+    return rows[0] || null;
+  } catch (error) {
+    if (isConnectionError(error)) {
+      // Fallback: try to find in rfid_fallback data or return a mock
+      console.warn('⚠️ [MySQL Offline] Cannot look up student, DB unavailable.');
+      return null;
+    }
+    throw error;
+  }
+}
+
 module.exports = {
   generateCardsForAdmission,
   getCardsByStudentId,
   getCardsByApplicationNumber,
+  getStudentByApplicationNumber,
   getCardById,
   updateCardStatus,
   deleteCard,

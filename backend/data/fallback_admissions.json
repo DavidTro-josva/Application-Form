@@ -250,6 +250,92 @@
         }
       ],
       "createdAt": "2026-07-29T06:15:16.683Z"
+    },
+    {
+      "studentId": 5,
+      "applicationNumber": "HKS-2026-0005",
+      "studentInfo": {
+        "fullName": "david josva",
+        "dob": "2020-04-12",
+        "ageYears": 6,
+        "ageMonths": 3,
+        "gender": "Male",
+        "bloodGroup": "O+",
+        "motherTongue": "Tamil",
+        "photoPath": "/uploads/studentPhoto-1785318558686-342308199.jpeg"
+      },
+      "parentInfo": {
+        "father": {
+          "fullName": "balasingh",
+          "occupation": "Businessman",
+          "mobileNumber": "9400765150",
+          "email": null,
+          "aadhaarNumber": "948130611723",
+          "photoPath": "/uploads/fatherPhoto-1785318558697-319440423.jpeg"
+        },
+        "mother": {
+          "fullName": "thangakani",
+          "occupation": "housewife",
+          "mobileNumber": "6282774435",
+          "email": null,
+          "aadhaarNumber": "987432148963",
+          "photoPath": "/uploads/motherPhoto-1785318558700-826858620.jpeg"
+        },
+        "guardian": {
+          "fullName": "selvasingh",
+          "occupation": "businessman",
+          "mobileNumber": "9715086344",
+          "email": null,
+          "aadhaarNumber": "547832569614",
+          "photoPath": "/uploads/guardianPhoto-1785318558715-810042060.jpeg"
+        },
+        "guardian2": null
+      },
+      "residentialAddress": {
+        "houseNumber": "6/190",
+        "street": "ozhalapathy",
+        "area": "ozhalapathy post",
+        "city": "chittur",
+        "district": "palakkad",
+        "state": "kerala",
+        "country": "India",
+        "pinCode": "678557"
+      },
+      "uploadedImages": [
+        {
+          "referenceId": 1785318559184,
+          "entityType": "STUDENT_PHOTO",
+          "originalName": "david photo.jpeg",
+          "storedPath": "/uploads/studentPhoto-1785318558686-342308199.jpeg",
+          "fileSizeKb": "138.30",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "referenceId": 1785318559215,
+          "entityType": "FATHER_PHOTO",
+          "originalName": "URK22CS2049.jpeg",
+          "storedPath": "/uploads/fatherPhoto-1785318558697-319440423.jpeg",
+          "fileSizeKb": "55.06",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "referenceId": 1785318559584,
+          "entityType": "MOTHER_PHOTO",
+          "originalName": "convacation photo.jpeg",
+          "storedPath": "/uploads/motherPhoto-1785318558700-826858620.jpeg",
+          "fileSizeKb": "178.14",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "referenceId": 1785318559147,
+          "entityType": "GUARDIAN_PHOTO",
+          "originalName": "college id card.jpeg",
+          "storedPath": "/uploads/guardianPhoto-1785318558715-810042060.jpeg",
+          "fileSizeKb": "304.27",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "createdAt": "2026-07-29T09:49:18.802Z"
     }
   ]
 }

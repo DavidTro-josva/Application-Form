@@ -14,6 +14,7 @@ router.post('/generate/:studentId',   ctrl.generateCards);
 // --- Card Retrieval ---
 router.get('/cards/:studentId',       ctrl.getCardsByStudent);
 router.get('/lookup/:applicationNumber', ctrl.lookupCardsByAppNumber);
+router.get('/student-info/:applicationNumber', ctrl.getStudentInfo);
 router.get('/card/:cardId',           ctrl.getCardById);
 
 // --- Card Management ---

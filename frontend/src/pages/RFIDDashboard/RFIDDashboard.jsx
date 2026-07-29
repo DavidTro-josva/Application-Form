@@ -8,6 +8,7 @@ import {
   deleteCard,
   regenerateCard,
   getCardLogs,
+  getStudentInfo,
 } from '../../services/rfidApi';
 import './RFIDDashboard.css';
 
@@ -104,15 +105,33 @@ const RFIDDashboard = () => {
     setCards([]);
     setStudentName('');
     setStudentId(null);
+    setSuccess(null);
     try {
       const res = await lookupCardsByAppNumber(appNumber.trim().toUpperCase());
-      setCards(res.data || []);
-      if (res.data?.length) {
-        setStudentName(res.data[0].student_name || '');
-        setStudentId(res.data[0].student_id || null);
-      }
-      if (!res.data?.length) {
-        setSuccess('No cards found for this application. Click "Generate ID Cards" to create them.');
+      const cardList = res.data || [];
+      setCards(cardList);
+
+      if (cardList.length > 0) {
+        // Cards already exist — get info from them
+        setStudentName(cardList[0].student_name || '');
+        setStudentId(cardList[0].student_id || null);
+      } else {
+        // No cards yet — still fetch the student so Generate button appears
+        try {
+          const studentRes = await getStudentInfo(appNumber.trim().toUpperCase());
+          if (studentRes?.data) {
+            setStudentName(studentRes.data.full_name || '');
+            setStudentId(studentRes.data.student_id || null);
+            setSuccess('Student found! Click "⚡ Generate ID Cards" to create RFID access cards for the family.');
+          } else {
+            setError('No student found with this application number. Please check and try again.');
+          }
+        } catch (studentErr) {
+          setError(
+            studentErr.response?.data?.message ||
+            'No student found with this application number. Please check and try again.'
+          );
+        }
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Could not look up cards. Check the application number.');

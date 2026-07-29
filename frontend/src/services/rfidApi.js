@@ -30,6 +30,12 @@ export async function lookupCardsByAppNumber(applicationNumber) {
   return data;
 }
 
+// Get student info by application number (even if no cards generated yet)
+export async function getStudentInfo(applicationNumber) {
+  const { data } = await axios.get(`${RFID_URL}/student-info/${applicationNumber}`);
+  return data;
+}
+
 // Get a single card by card ID
 export async function getCardById(cardId) {
   const { data } = await axios.get(`${RFID_URL}/card/${cardId}`);

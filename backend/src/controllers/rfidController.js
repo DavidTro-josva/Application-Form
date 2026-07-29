@@ -128,10 +128,28 @@ async function logScan(req, res, next) {
   }
 }
 
+// GET /api/rfid/student-info/:applicationNumber
+async function getStudentInfo(req, res, next) {
+  try {
+    const { applicationNumber } = req.params;
+    const student = await RFIDCard.getStudentByApplicationNumber(applicationNumber);
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        message: `No student found with application number '${applicationNumber}'. Please check and try again.`,
+      });
+    }
+    return res.status(200).json({ success: true, data: student });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   generateCards,
   getCardsByStudent,
   lookupCardsByAppNumber,
+  getStudentInfo,
   getCardById,
   updateStatus,
   deleteCard,
