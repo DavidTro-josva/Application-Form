@@ -175,7 +175,7 @@ const GuardianSection = ({
         {/* Guardian 2 Full Name */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Name">
-            Guardian Full Name <span className="required-star">*</span>
+            Guardian Full Name
           </label>
           <input
             id="guardian2Name"
@@ -198,7 +198,7 @@ const GuardianSection = ({
         {/* Guardian 2 Occupation */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Occupation">
-            Occupation <span className="required-star">*</span>
+            Occupation
           </label>
           <input
             id="guardian2Occupation"
@@ -221,7 +221,7 @@ const GuardianSection = ({
         {/* Guardian 2 Mobile Number */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Mobile">
-            Mobile Number <span className="required-star">*</span>
+            Mobile Number
           </label>
           <input
             id="guardian2Mobile"
@@ -269,7 +269,7 @@ const GuardianSection = ({
         {/* Guardian 2 Aadhaar Number */}
         <div className="form-group form-grid-full">
           <label className="form-label" htmlFor="guardian2Aadhaar">
-            Aadhaar Number (12 Digits) <span className="required-star">*</span>
+            Aadhaar Number (12 Digits)
           </label>
           <input
             id="guardian2Aadhaar"
@@ -300,7 +300,7 @@ const GuardianSection = ({
             onFileSelect={onFileSelect}
             onFileRemove={onFileRemove}
             error={touched.guardian2Photo && errors.guardian2Photo}
-            required={true}
+            required={false}
           />
         </div>
       </div>
