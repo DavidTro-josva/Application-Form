@@ -175,14 +175,14 @@ const GuardianSection = ({
         {/* Guardian 2 Full Name */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Name">
-            Guardian 2 Full Name (Optional)
+            Guardian Full Name <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Name"
             name="guardian2Name"
             type="text"
             className={`form-input ${touched.guardian2Name && errors.guardian2Name ? 'input-error' : ''}`}
-            placeholder="Enter second guardian's full name"
+            placeholder="Enter guardian's full name"
             value={values.guardian2Name || ''}
             onChange={onChange}
             onBlur={onBlur}
@@ -198,7 +198,7 @@ const GuardianSection = ({
         {/* Guardian 2 Occupation */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Occupation">
-            Occupation (Optional)
+            Occupation <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Occupation"
@@ -221,7 +221,7 @@ const GuardianSection = ({
         {/* Guardian 2 Mobile Number */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Mobile">
-            Mobile Number (Optional)
+            Mobile Number <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Mobile"
@@ -253,7 +253,7 @@ const GuardianSection = ({
             name="guardian2Email"
             type="email"
             className={`form-input ${touched.guardian2Email && errors.guardian2Email ? 'input-error' : ''}`}
-            placeholder="guardian2@example.com"
+            placeholder="guardian@example.com"
             value={values.guardian2Email || ''}
             onChange={onChange}
             onBlur={onBlur}
@@ -269,7 +269,7 @@ const GuardianSection = ({
         {/* Guardian 2 Aadhaar Number */}
         <div className="form-group form-grid-full">
           <label className="form-label" htmlFor="guardian2Aadhaar">
-            Aadhaar Number (12 Digits) (Optional)
+            Aadhaar Number (12 Digits) <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Aadhaar"
@@ -293,13 +293,14 @@ const GuardianSection = ({
         {/* Guardian 2 Photo Upload */}
         <div className="form-grid-full">
           <PhotoUpload
-            label="Guardian 2's Photo (Passport Size) (Optional)"
+            label="Guardian's Photo (Passport Size)"
             fieldName="guardian2Photo"
             file={values.guardian2Photo}
             previewUrl={previewUrls.guardian2Photo}
             onFileSelect={onFileSelect}
             onFileRemove={onFileRemove}
             error={touched.guardian2Photo && errors.guardian2Photo}
+            required={true}
           />
         </div>
       </div>

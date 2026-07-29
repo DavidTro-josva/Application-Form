@@ -7,7 +7,7 @@ import { UploadCloud, RefreshCw, Trash2, AlertCircle } from 'lucide-react';
  * - Maximum Size: 5MB
  * - Features image preview, remove button, replace button, and dropzone
  */
-const PhotoUpload = ({ label, fieldName, file, previewUrl, onFileSelect, onFileRemove, error }) => {
+const PhotoUpload = ({ label, fieldName, file, previewUrl, onFileSelect, onFileRemove, error, required = true }) => {
   const fileInputRef = useRef(null);
   const [dragActive, setDragActive] = useState(false);
   const [localError, setLocalError] = useState('');
@@ -67,7 +67,7 @@ const PhotoUpload = ({ label, fieldName, file, previewUrl, onFileSelect, onFileR
   return (
     <div className="form-group">
       <label className="form-label">
-        {label} <span className="required-star">*</span>
+        {label} {required && <span className="required-star">*</span>}
       </label>
 
       <input
