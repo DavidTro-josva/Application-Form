@@ -52,15 +52,17 @@ const upload = multer({
 });
 
 /**
- * Configure upload for the three required photo fields:
+ * Configure upload for the four required photo fields:
  * - studentPhoto
  * - fatherPhoto
  * - motherPhoto
+ * - guardianPhoto
  */
 const uploadAdmissionPhotos = upload.fields([
   { name: 'studentPhoto', maxCount: 1 },
   { name: 'fatherPhoto', maxCount: 1 },
   { name: 'motherPhoto', maxCount: 1 },
+  { name: 'guardianPhoto', maxCount: 1 },
 ]);
 
 module.exports = {

@@ -31,7 +31,15 @@ const initialFormValues = {
   motherAadhaar: '',
   motherPhoto: null,
 
-  // Section 3: Residential Address
+  // Section 3: Guardian Details
+  guardianName: '',
+  guardianOccupation: '',
+  guardianMobile: '',
+  guardianEmail: '',
+  guardianAadhaar: '',
+  guardianPhoto: null,
+
+  // Section 4: Residential Address
   houseNumber: '',
   street: '',
   area: '',
@@ -50,6 +58,7 @@ export const useFormValidation = () => {
     studentPhoto: null,
     fatherPhoto: null,
     motherPhoto: null,
+    guardianPhoto: null,
   });
 
   // Calculate age for display: returns "X Years, Y Months"
@@ -154,6 +163,34 @@ export const useFormValidation = () => {
       case 'motherAadhaar':
         if (!value || !/^[0-9]{12}$/.test(value)) {
           return 'Aadhaar Number must be exactly 12 digits.';
+        }
+        return '';
+
+      case 'guardianName':
+        if (!value || !value.trim()) return 'Guardian Full Name is required.';
+        if (value.trim().length < 3) return 'Guardian Full Name must be at least 3 characters.';
+        if (!/^[A-Za-z\s]+$/.test(value)) return 'Guardian Full Name can only contain alphabetic characters and spaces.';
+        return '';
+
+      case 'guardianOccupation':
+        if (!value || !value.trim()) return 'Guardian Occupation is required.';
+        return '';
+
+      case 'guardianMobile':
+        if (!value || !/^[0-9]{10}$/.test(value)) {
+          return 'Guardian Mobile Number must be exactly 10 digits.';
+        }
+        return '';
+
+      case 'guardianEmail':
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return 'Please enter a valid email address.';
+        }
+        return '';
+
+      case 'guardianAadhaar':
+        if (!value || !/^[0-9]{12}$/.test(value)) {
+          return 'Guardian Aadhaar Number must be exactly 12 digits.';
         }
         return '';
 
@@ -269,6 +306,10 @@ export const useFormValidation = () => {
       'motherOccupation',
       'motherMobile',
       'motherAadhaar',
+      'guardianName',
+      'guardianOccupation',
+      'guardianMobile',
+      'guardianAadhaar',
       'houseNumber',
       'street',
       'area',
@@ -291,8 +332,9 @@ export const useFormValidation = () => {
     if (values.studentPhoto) validCount++;
     if (values.fatherPhoto) validCount++;
     if (values.motherPhoto) validCount++;
+    if (values.guardianPhoto) validCount++;
 
-    const totalCheckpoints = requiredFields.length + 3;
+    const totalCheckpoints = requiredFields.length + 4;
     return Math.round((validCount / totalCheckpoints) * 100);
   };
 
@@ -304,7 +346,12 @@ export const useFormValidation = () => {
     setValues(initialFormValues);
     setErrors({});
     setTouched({});
-    setPreviewUrls({ studentPhoto: null, fatherPhoto: null, motherPhoto: null });
+    setPreviewUrls({
+      studentPhoto: null,
+      fatherPhoto: null,
+      motherPhoto: null,
+      guardianPhoto: null,
+    });
   };
 
   return {

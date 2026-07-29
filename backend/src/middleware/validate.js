@@ -98,7 +98,28 @@ const validateAdmissionRules = [
     .notEmpty().withMessage('Mother Aadhaar Number is required')
     .matches(/^[0-9]{12}$/).withMessage('Mother Aadhaar Number must be exactly 12 digits'),
 
-  // Section 3: Residential Address
+  // Section 3: Guardian Details
+  body('guardianName')
+    .trim()
+    .notEmpty().withMessage('Guardian Full Name is required')
+    .isLength({ min: 3 }).withMessage('Guardian Full Name must be at least 3 characters')
+    .matches(/^[A-Za-z\s]+$/).withMessage('Guardian Full Name can only contain alphabetic characters and spaces'),
+  body('guardianOccupation')
+    .trim()
+    .notEmpty().withMessage('Guardian Occupation is required'),
+  body('guardianMobile')
+    .trim()
+    .notEmpty().withMessage('Guardian Mobile Number is required')
+    .matches(/^[0-9]{10}$/).withMessage('Guardian Mobile Number must be exactly 10 digits'),
+  body('guardianEmail')
+    .optional({ checkFalsy: true })
+    .isEmail().withMessage('Guardian Email Address must be a valid email format'),
+  body('guardianAadhaar')
+    .trim()
+    .notEmpty().withMessage('Guardian Aadhaar Number is required')
+    .matches(/^[0-9]{12}$/).withMessage('Guardian Aadhaar Number must be exactly 12 digits'),
+
+  // Section 4: Residential Address
   body('houseNumber')
     .trim()
     .notEmpty().withMessage('House Number is required'),

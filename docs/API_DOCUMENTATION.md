@@ -53,6 +53,11 @@ Submits a new student admission application along with Student, Father, and Moth
 | `motherMobile` | String | **Yes** | Exactly 10 digits |
 | `motherEmail` | String | No | Valid RFC email address |
 | `motherAadhaar` | String | **Yes** | Exactly 12 digits |
+| `guardianName` | String | **Yes** | Guardian Full Name (min 3 chars, alphabetic only) |
+| `guardianOccupation` | String | **Yes** | Guardian Occupation |
+| `guardianMobile` | String | **Yes** | Exactly 10 digits |
+| `guardianEmail` | String | No | Valid RFC email address |
+| `guardianAadhaar` | String | **Yes** | Exactly 12 digits |
 | `houseNumber` | String | **Yes** | Residential house or flat number |
 | `street` | String | **Yes** | Street name or road |
 | `area` | String | **Yes** | Area or locality |

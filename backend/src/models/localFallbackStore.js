@@ -88,6 +88,9 @@ const createAdmission = async (data, files) => {
   const motherPhotoPath = files?.motherPhoto?.[0]
     ? `/uploads/${files.motherPhoto[0].filename}`
     : null;
+  const guardianPhotoPath = files?.guardianPhoto?.[0]
+    ? `/uploads/${files.guardianPhoto[0].filename}`
+    : null;
 
   const newAdmission = {
     studentId: nextId,
@@ -119,6 +122,14 @@ const createAdmission = async (data, files) => {
         aadhaarNumber: data.motherAadhaar,
         photoPath: motherPhotoPath,
       },
+      guardian: {
+        fullName: data.guardianName,
+        occupation: data.guardianOccupation,
+        mobileNumber: data.guardianMobile,
+        email: data.guardianEmail || null,
+        aadhaarNumber: data.guardianAadhaar,
+        photoPath: guardianPhotoPath,
+      },
     },
     residentialAddress: {
       houseNumber: data.houseNumber,
@@ -139,6 +150,7 @@ const createAdmission = async (data, files) => {
     { file: files?.studentPhoto?.[0], type: 'STUDENT_PHOTO' },
     { file: files?.fatherPhoto?.[0], type: 'FATHER_PHOTO' },
     { file: files?.motherPhoto?.[0], type: 'MOTHER_PHOTO' },
+    { file: files?.guardianPhoto?.[0], type: 'GUARDIAN_PHOTO' },
   ].forEach(({ file, type }) => {
     if (file) {
       newAdmission.uploadedImages.push({
@@ -202,6 +214,9 @@ const updateAdmission = async (id, data, files) => {
   const motherPhotoPath = files?.motherPhoto?.[0]
     ? `/uploads/${files.motherPhoto[0].filename}`
     : existing.parentInfo.mother.photoPath;
+  const guardianPhotoPath = files?.guardianPhoto?.[0]
+    ? `/uploads/${files.guardianPhoto[0].filename}`
+    : existing.parentInfo?.guardian?.photoPath || null;
 
   const updatedAdmission = {
     ...existing,
@@ -231,6 +246,14 @@ const updateAdmission = async (id, data, files) => {
         email: data.motherEmail || null,
         aadhaarNumber: data.motherAadhaar,
         photoPath: motherPhotoPath,
+      },
+      guardian: {
+        fullName: data.guardianName,
+        occupation: data.guardianOccupation,
+        mobileNumber: data.guardianMobile,
+        email: data.guardianEmail || null,
+        aadhaarNumber: data.guardianAadhaar,
+        photoPath: guardianPhotoPath,
       },
     },
     residentialAddress: {

@@ -29,7 +29,7 @@ const ParentSection = ({
         <div className="section-icon-badge">
           <Users size={24} />
         </div>
-        <h2>2. Parent / Guardian Details</h2>
+        <h2>2. Parent Details</h2>
       </div>
 
       {/* --- FATHER INFORMATION --- */}

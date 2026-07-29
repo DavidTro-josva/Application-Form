@@ -24,7 +24,7 @@ const AddressSection = ({
         <div className="section-icon-badge">
           <Home size={24} />
         </div>
-        <h2>3. Residential Address</h2>
+        <h2>4. Residential Address</h2>
       </div>
 
       <div className="form-grid-3">

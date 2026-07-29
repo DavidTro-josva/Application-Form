@@ -84,10 +84,12 @@ class AdmissionModel {
       const studentPhotoFile = files?.studentPhoto?.[0];
       const fatherPhotoFile = files?.fatherPhoto?.[0];
       const motherPhotoFile = files?.motherPhoto?.[0];
+      const guardianPhotoFile = files?.guardianPhoto?.[0];
 
       const studentPhotoPath = studentPhotoFile ? `/uploads/${studentPhotoFile.filename}` : null;
       const fatherPhotoPath = fatherPhotoFile ? `/uploads/${fatherPhotoFile.filename}` : null;
       const motherPhotoPath = motherPhotoFile ? `/uploads/${motherPhotoFile.filename}` : null;
+      const guardianPhotoPath = guardianPhotoFile ? `/uploads/${guardianPhotoFile.filename}` : null;
 
       // 3. Insert into `students` table
       const [studentResult] = await connection.query(
@@ -143,7 +145,24 @@ class AdmissionModel {
         ]
       );
 
-      // 6. Insert into `addresses` table
+      // 6. Insert Guardian into `parents` table
+      await connection.query(
+        `INSERT INTO parents (
+          student_id, relation_type, full_name, occupation,
+          mobile_number, email, aadhaar_number, photo_path
+        ) VALUES (?, 'GUARDIAN', ?, ?, ?, ?, ?, ?)`,
+        [
+          studentId,
+          data.guardianName,
+          data.guardianOccupation,
+          data.guardianMobile,
+          data.guardianEmail || null,
+          data.guardianAadhaar,
+          guardianPhotoPath,
+        ]
+      );
+
+      // 7. Insert into `addresses` table
       await connection.query(
         `INSERT INTO addresses (
           student_id, house_number, street, area,
@@ -245,6 +264,7 @@ class AdmissionModel {
 
     const father = parents.find((p) => p.relation_type === 'FATHER') || null;
     const mother = parents.find((p) => p.relation_type === 'MOTHER') || null;
+    const guardian = parents.find((p) => p.relation_type === 'GUARDIAN') || null;
     const address = addresses[0] || null;
 
     return {
@@ -276,6 +296,14 @@ class AdmissionModel {
           email: mother.email,
           aadhaarNumber: mother.aadhaar_number,
           photoPath: mother.photo_path,
+        } : null,
+        guardian: guardian ? {
+          fullName: guardian.full_name,
+          occupation: guardian.occupation,
+          mobileNumber: guardian.mobile_number,
+          email: guardian.email,
+          aadhaarNumber: guardian.aadhaar_number,
+          photoPath: guardian.photo_path,
         } : null,
       },
       residentialAddress: address ? {
@@ -390,6 +418,51 @@ class AdmissionModel {
         ]
       );
 
+      // Guardian update
+      const guardianPhotoFile = files?.guardianPhoto?.[0];
+      const guardianPhotoPath = guardianPhotoFile
+        ? `/uploads/${guardianPhotoFile.filename}`
+        : existing.parentInfo?.guardian?.photoPath || null;
+
+      const [existingGuardian] = await connection.query(
+        `SELECT * FROM parents WHERE student_id = ? AND relation_type = 'GUARDIAN'`,
+        [studentId]
+      );
+
+      if (existingGuardian.length === 0) {
+        await connection.query(
+          `INSERT INTO parents (
+            student_id, relation_type, full_name, occupation,
+            mobile_number, email, aadhaar_number, photo_path
+          ) VALUES (?, 'GUARDIAN', ?, ?, ?, ?, ?, ?)`,
+          [
+            studentId,
+            data.guardianName,
+            data.guardianOccupation,
+            data.guardianMobile,
+            data.guardianEmail || null,
+            data.guardianAadhaar,
+            guardianPhotoPath,
+          ]
+        );
+      } else {
+        await connection.query(
+          `UPDATE parents SET
+            full_name = ?, occupation = ?, mobile_number = ?,
+            email = ?, aadhaar_number = ?, photo_path = ?
+          WHERE student_id = ? AND relation_type = 'GUARDIAN'`,
+          [
+            data.guardianName,
+            data.guardianOccupation,
+            data.guardianMobile,
+            data.guardianEmail || null,
+            data.guardianAadhaar,
+            guardianPhotoPath,
+            studentId,
+          ]
+        );
+      }
+
       // Address update
       await connection.query(
         `UPDATE addresses SET
@@ -452,6 +525,7 @@ class AdmissionModel {
     deleteFileSafely(existing.studentInfo?.photoPath);
     deleteFileSafely(existing.parentInfo?.father?.photoPath);
     deleteFileSafely(existing.parentInfo?.mother?.photoPath);
+    deleteFileSafely(existing.parentInfo?.guardian?.photoPath);
 
     try {
       const [result] = await pool.query(

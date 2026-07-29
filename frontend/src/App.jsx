@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header/Header';
 import StudentSection from './components/StudentSection/StudentSection';
 import ParentSection from './components/ParentSection/ParentSection';
+import GuardianSection from './components/GuardianSection/GuardianSection';
 import AddressSection from './components/AddressSection/AddressSection';
 import FormActions from './components/FormActions/FormActions';
 import SuccessModal from './components/SuccessModal/SuccessModal';
@@ -40,10 +41,12 @@ const App = () => {
   // Progress percentage
   const progressPercentage = calculateProgress();
   let currentStepName = '1. Student Info';
-  if (progressPercentage > 75) {
+  if (progressPercentage > 80) {
     currentStepName = 'Ready to Submit';
-  } else if (progressPercentage > 45) {
-    currentStepName = '3. Address Details';
+  } else if (progressPercentage > 60) {
+    currentStepName = '4. Address Details';
+  } else if (progressPercentage > 40) {
+    currentStepName = '3. Guardian Details';
   } else if (progressPercentage > 20) {
     currentStepName = '2. Parent Details';
   }
@@ -134,7 +137,7 @@ const App = () => {
             maxDate={todayString}
           />
 
-          {/* Section 2: Parent / Guardian Details */}
+          {/* Section 2: Parent Details */}
           <ParentSection
             values={values}
             errors={errors}
@@ -146,7 +149,19 @@ const App = () => {
             previewUrls={previewUrls}
           />
 
-          {/* Section 3: Residential Address */}
+          {/* Section 3: Guardian Details */}
+          <GuardianSection
+            values={values}
+            errors={errors}
+            touched={touched}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFileSelect={handleFileSelect}
+            onFileRemove={handleFileRemove}
+            previewUrls={previewUrls}
+          />
+
+          {/* Section 4: Residential Address */}
           <AddressSection
             values={values}
             errors={errors}
