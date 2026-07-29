@@ -44,13 +44,24 @@ const errorHandler = (err, req, res, next) => {
   }
 
   // 4. Handle Database Connection / Query Failures
-  if (
-    err.code === 'ECONNREFUSED' ||
-    err.code === 'ENOTFOUND' ||
-    err.code === 'EHOSTUNREACH' ||
-    err.code === 'ETIMEDOUT' ||
-    (err.code && err.code.startsWith('ER_'))
-  ) {
+  const isDbErr = (e) => {
+    if (!e) return false;
+    const code = e.code || '';
+    if (
+      code === 'ECONNREFUSED' ||
+      code === 'ENOTFOUND' ||
+      code === 'EHOSTUNREACH' ||
+      code === 'ETIMEDOUT' ||
+      code.startsWith('ER_')
+    ) return true;
+    if (e.errors && Array.isArray(e.errors)) {
+      return e.errors.some(isDbErr);
+    }
+    const m = (e.message || '').toUpperCase();
+    return m.includes('ECONNREFUSED') || m.includes('ENOTFOUND') || m.includes('ETIMEDOUT') || m.includes('MYSQL') || e.name === 'AggregateError';
+  };
+
+  if (isDbErr(err)) {
     return res.status(503).json({
       success: false,
       errorType: 'DATABASE_FAILURE',

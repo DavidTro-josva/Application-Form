@@ -12,7 +12,7 @@ const fallbackStore = require('./localFallbackStore');
 const isConnectionError = (err) => {
   if (!err) return false;
   const c = err.code || '';
-  return (
+  if (
     c === 'ECONNREFUSED' ||
     c === 'ENOTFOUND' ||
     c === 'EHOSTUNREACH' ||
@@ -21,6 +21,22 @@ const isConnectionError = (err) => {
     c === 'ER_BAD_DB_ERROR' ||
     c === 'ER_NO_SUCH_TABLE' ||
     c === 'ER_NO_DB_ERROR'
+  ) {
+    return true;
+  }
+  if (err.errors && Array.isArray(err.errors)) {
+    for (const subErr of err.errors) {
+      if (isConnectionError(subErr)) return true;
+    }
+  }
+  const msg = (err.message || '').toUpperCase();
+  return (
+    msg.includes('ECONNREFUSED') ||
+    msg.includes('ENOTFOUND') ||
+    msg.includes('ETIMEDOUT') ||
+    msg.includes('EHOSTUNREACH') ||
+    msg.includes('CAN\'T CONNECT') ||
+    err.name === 'AggregateError'
   );
 };
 
