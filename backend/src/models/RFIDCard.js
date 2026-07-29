@@ -170,21 +170,21 @@ function generateCardsFallback(studentId) {
       if (student) {
         mockParents = [];
         if (student.parentInfo?.father?.fullName) {
-          mockParents.push({ relation_type: 'FATHER', full_name: student.parentInfo.father.fullName });
+          mockParents.push({ relation_type: 'FATHER', full_name: student.parentInfo.father.fullName, photo_path: student.parentInfo.father.photoPath });
         }
         if (student.parentInfo?.mother?.fullName) {
-          mockParents.push({ relation_type: 'MOTHER', full_name: student.parentInfo.mother.fullName });
+          mockParents.push({ relation_type: 'MOTHER', full_name: student.parentInfo.mother.fullName, photo_path: student.parentInfo.mother.photoPath });
         }
         if (student.guardianInfo?.guardianName) {
-          mockParents.push({ relation_type: 'GUARDIAN', full_name: student.guardianInfo.guardianName });
+          mockParents.push({ relation_type: 'GUARDIAN', full_name: student.guardianInfo.guardianName, photo_path: student.guardianInfo.guardianPhotoPath });
         }
         if (student.guardianInfo?.guardian2Name) {
-          mockParents.push({ relation_type: 'GUARDIAN2', full_name: student.guardianInfo.guardian2Name });
+          mockParents.push({ relation_type: 'GUARDIAN2', full_name: student.guardianInfo.guardian2Name, photo_path: student.guardianInfo.guardian2PhotoPath });
         }
         if (mockParents.length === 0) {
            mockParents = [
-             { relation_type: 'FATHER', full_name: 'Father (Offline Mode)' },
-             { relation_type: 'MOTHER', full_name: 'Mother (Offline Mode)' },
+             { relation_type: 'FATHER', full_name: 'Father (Offline Mode)', photo_path: null },
+             { relation_type: 'MOTHER', full_name: 'Mother (Offline Mode)', photo_path: null },
            ];
         }
       }
@@ -209,7 +209,7 @@ function generateCardsFallback(studentId) {
       student_id: studentId,
       relationship: parent.relation_type,
       holder_name: parent.full_name,
-      holder_photo: null,
+      holder_photo: parent.photo_path || null,
       card_number: generateCardNumber(),
       unique_card_id: uniqueCardId,
       rfid_serial: generateRFIDSerial(),
