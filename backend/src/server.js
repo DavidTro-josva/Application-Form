@@ -11,6 +11,7 @@ const morgan = require('morgan');
 const path = require('path');
 const { testConnection } = require('./config/db');
 const admissionRoutes = require('./routes/admissionRoutes');
+const rfidRoutes = require('./routes/rfidRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -32,6 +33,7 @@ app.use('/uploads', express.static(uploadDir));
 
 // 3. API Routes
 app.use('/api/admission', admissionRoutes);
+app.use('/api/rfid', rfidRoutes);
 
 // Health Check Endpoint
 app.get('/api/health', async (req, res) => {
