@@ -210,14 +210,14 @@ const RFIDDashboard = () => {
 
   /* Print card */
   const handlePrint = useCallback((card) => {
-    const printWin = window.open('', '_blank', 'width=800,height=600');
+    const printWin = window.open('', '_blank', 'width=850,height=650');
     const photoTag = card.holder_photo
-      ? `<img src="${window.location.origin}${card.holder_photo}" style="width:19mm;height:23mm;object-fit:cover;border-radius:2.5mm;border:1.5px solid #cbd5e1;flex-shrink:0;" />`
-      : `<div style="width:19mm;height:23mm;border-radius:2.5mm;background:#f1f5f9;border:1.5px dashed #cbd5e1;display:flex;align-items:center;justify-content:center;font-size:14pt;color:#94a3b8;flex-shrink:0;">👤</div>`;
+      ? `<img src="${window.location.origin}${card.holder_photo}" style="width:22mm;height:26mm;object-fit:cover;border-radius:2.5mm;border:1.5px solid #94a3b8;flex-shrink:0;" />`
+      : `<div style="width:22mm;height:26mm;border-radius:2.5mm;background:#f1f5f9;border:1.5px dashed #cbd5e1;display:flex;align-items:center;justify-content:center;font-size:18pt;color:#94a3b8;flex-shrink:0;">👤</div>`;
 
     const logoTag = logoUrl
-      ? `<img src="${window.location.origin}${logoUrl}" style="height:22px;object-fit:contain;" />`
-      : `<span style="font-size:12pt">🎒</span>`;
+      ? `<img src="${window.location.origin}${logoUrl}" style="height:28px;object-fit:contain;" />`
+      : `<span style="font-size:16pt">🎒</span>`;
 
     const relLabel = card.relationship?.replace('GUARDIAN2', 'Guardian 2').replace('GUARDIAN', 'Guardian 1') || 'Access Card';
 
@@ -243,12 +243,12 @@ const RFIDDashboard = () => {
           .card-page {
             width: 85.6mm;
             height: 54mm;
-            padding: 3mm 4mm;
+            padding: 2.5mm 3.5mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             background: #ffffff;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #cbd5e1;
             box-sizing: border-box;
             overflow: hidden;
             page-break-after: avoid;
@@ -258,51 +258,54 @@ const RFIDDashboard = () => {
             display: flex;
             align-items: center;
             gap: 6px;
-            border-bottom: 1.5px solid #1e3a8a;
-            padding-bottom: 2px;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 3px;
           }
           .header-text { flex: 1; }
-          .school-name { font-size: 8pt; font-weight: 800; color: #1e3a8a; line-height: 1.1; }
-          .school-sub { font-size: 5.5pt; color: #64748b; font-weight: 600; }
+          .school-name { font-size: 10.5pt; font-weight: 800; color: #1e3a8a; line-height: 1.1; letter-spacing: -0.01em; }
+          .school-sub { font-size: 7pt; color: #475569; font-weight: 600; }
           .status-badge {
-            font-size: 5pt;
+            font-size: 6.5pt;
             font-weight: 800;
-            padding: 1px 5px;
+            padding: 2px 7px;
             border-radius: 99px;
             color: white;
-            background: ${card.status === 'ACTIVE' ? '#166534' : '#991b1b'};
+            background: ${card.status === 'ACTIVE' ? '#15803d' : '#b91c1c'};
             text-transform: uppercase;
+            letter-spacing: 0.03em;
           }
           .body-content {
             display: flex;
-            gap: 7px;
+            gap: 8px;
             align-items: center;
-            margin: 1px 0;
+            margin: 2px 0;
           }
-          .info-col { flex: 1; display: flex; flex-direction: column; gap: 1px; }
+          .info-col { flex: 1; display: flex; flex-direction: column; gap: 2px; }
           .rel-tag {
-            font-size: 5.5pt;
+            font-size: 7pt;
             font-weight: 800;
             color: #1e40af;
             background: #dbeafe;
-            padding: 1px 5px;
+            padding: 1.5px 7px;
             border-radius: 4px;
             width: fit-content;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
           }
-          .holder-name { font-size: 9pt; font-weight: 800; color: #0f172a; line-height: 1.1; margin-top: 1px; }
-          .detail-line { font-size: 5.8pt; color: #475569; }
-          .detail-line b { color: #1e293b; }
+          .holder-name { font-size: 12pt; font-weight: 800; color: #0f172a; line-height: 1.1; margin-top: 1px; }
+          .detail-line { font-size: 7.5pt; color: #334155; line-height: 1.25; }
+          .detail-line b { color: #0f172a; font-weight: 700; }
           .footer {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 2px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 3px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 5.5pt;
-            color: #64748b;
+            font-size: 7pt;
+            color: #475569;
+            font-weight: 500;
           }
-          .card-nos { font-family: monospace; font-weight: 700; color: #334155; font-size: 5.8pt; }
+          .card-nos { font-family: monospace; font-weight: 700; color: #1e293b; font-size: 7pt; }
         </style>
       </head>
       <body>
