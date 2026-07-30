@@ -81,14 +81,10 @@ const CardFront = ({ card, studentName, logoUrl }) => {
             {config.label}
           </div>
           <div className="card-holder-name">{card.holder_name || '—'}</div>
-          <div className="card-student-label">
-            Student: <span>{studentName || '—'}</span>
-            {card.application_number && (
-              <span style={{ fontSize: '0.55rem', opacity: 0.8, marginLeft: '4px' }}>
-                ({card.application_number})
-              </span>
-            )}
-          </div>
+          <div className="card-student-label">Student: <span>{studentName || '—'}</span></div>
+          {card.application_number && (
+            <div className="card-student-label">App No: <span>{card.application_number}</span></div>
+          )}
           <div className="card-meta-row">
             <div className="card-meta-item">
               <span className="card-meta-label">Card No</span>

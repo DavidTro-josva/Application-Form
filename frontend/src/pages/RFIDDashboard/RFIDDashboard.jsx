@@ -324,7 +324,8 @@ const RFIDDashboard = () => {
             <div class="info-col">
               <span class="rel-tag">${relLabel}</span>
               <div class="holder-name">${card.holder_name}</div>
-              <div class="detail-line" style="margin-top:2px;"><b>Student:</b> ${card.student_name || '—'} ${card.application_number ? `<span style="font-size:6.8pt;color:#64748b;">(${card.application_number})</span>` : ''}</div>
+              <div class="detail-line" style="margin-top:2px;"><b>Student:</b> ${card.student_name || '—'}</div>
+              ${card.application_number ? `<div class="detail-line"><b>App No:</b> ${card.application_number}</div>` : ''}
               <div class="detail-line"><b>Issue:</b> ${card.issue_date ? new Date(card.issue_date).toLocaleDateString('en-IN') : '—'}</div>
               <div class="detail-line"><b>Expiry:</b> ${card.expiry_date ? new Date(card.expiry_date).toLocaleDateString('en-IN') : '—'}</div>
             </div>
