@@ -169,13 +169,13 @@ const GuardianSection = ({
 
       <hr style={{ border: 'none', borderTop: '1px solid var(--color-border-subtle)', margin: '16px 0' }} />
 
-      {/* --- GUARDIAN 2 INFORMATION (OPTIONAL) --- */}
-      <h3 className="subsection-title">Guardian 2 Information (Optional)</h3>
+      {/* --- GUARDIAN 2 INFORMATION --- */}
+      <h3 className="subsection-title">Guardian 2 Information</h3>
       <div className="form-grid">
         {/* Guardian 2 Full Name */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Name">
-            Guardian Full Name
+            Guardian Full Name <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Name"
@@ -198,7 +198,7 @@ const GuardianSection = ({
         {/* Guardian 2 Occupation */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Occupation">
-            Occupation
+            Occupation <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Occupation"
@@ -221,7 +221,7 @@ const GuardianSection = ({
         {/* Guardian 2 Mobile Number */}
         <div className="form-group">
           <label className="form-label" htmlFor="guardian2Mobile">
-            Mobile Number
+            Mobile Number <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Mobile"
@@ -269,7 +269,7 @@ const GuardianSection = ({
         {/* Guardian 2 Aadhaar Number */}
         <div className="form-group form-grid-full">
           <label className="form-label" htmlFor="guardian2Aadhaar">
-            Aadhaar Number (12 Digits)
+            Aadhaar Number (12 Digits) <span className="required-star">*</span>
           </label>
           <input
             id="guardian2Aadhaar"
@@ -300,7 +300,7 @@ const GuardianSection = ({
             onFileSelect={onFileSelect}
             onFileRemove={onFileRemove}
             error={touched.guardian2Photo && errors.guardian2Photo}
-            required={false}
+            required={true}
           />
         </div>
       </div>
