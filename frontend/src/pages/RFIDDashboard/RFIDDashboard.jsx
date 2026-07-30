@@ -210,44 +210,131 @@ const RFIDDashboard = () => {
 
   /* Print card */
   const handlePrint = useCallback((card) => {
-    const printWin = window.open('', '_blank', 'width=900,height=600');
-    const logoTag = logoUrl ? `<img src="${window.location.origin}${logoUrl}" style="height:48px;object-fit:contain;" />` : '';
+    const printWin = window.open('', '_blank', 'width=800,height=600');
+    const photoTag = card.holder_photo
+      ? `<img src="${window.location.origin}${card.holder_photo}" style="width:19mm;height:23mm;object-fit:cover;border-radius:2.5mm;border:1.5px solid #cbd5e1;flex-shrink:0;" />`
+      : `<div style="width:19mm;height:23mm;border-radius:2.5mm;background:#f1f5f9;border:1.5px dashed #cbd5e1;display:flex;align-items:center;justify-content:center;font-size:14pt;color:#94a3b8;flex-shrink:0;">👤</div>`;
+
+    const logoTag = logoUrl
+      ? `<img src="${window.location.origin}${logoUrl}" style="height:22px;object-fit:contain;" />`
+      : `<span style="font-size:12pt">🎒</span>`;
+
+    const relLabel = card.relationship?.replace('GUARDIAN2', 'Guardian 2').replace('GUARDIAN', 'Guardian 1') || 'Access Card';
+
     printWin.document.write(`
-      <html><head><title>RFID Card – ${card.holder_name}</title>
-      <style>
-        @page { size: 85.6mm 54mm; margin: 0; }
-        body { margin: 0; padding: 8mm; font-family: Inter, sans-serif; background: #f0f4ff; }
-        .card-wrap { width: 85.6mm; }
-        h3 { margin: 0 0 4px; font-size: 11pt; color: #1e3a8a; }
-        p { margin: 2px 0; font-size: 9pt; color: #334155; }
-        .badge { display:inline-block; padding: 2px 8px; border-radius:9999px; font-size:8pt; font-weight:700; }
-        .active { background:#dcfce7; color:#166534; }
-        .inactive { background:#f1f5f9; color:#475569; }
-        .blocked { background:#fee2e2; color:#991b1b; }
-        hr { border:none; border-top:1px solid #e2e8f0; margin:6px 0; }
-      </style></head><body>
-      <div class="card-wrap">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          ${logoTag}
-          <div>
-            <h3>TN Happy Kids School</h3>
-            <p style="font-size:8pt;color:#64748b">RFID Family Access Card</p>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>RFID Card – ${card.holder_name}</title>
+        <style>
+          @page { size: 85.6mm 54mm; margin: 0; }
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          html, body {
+            width: 85.6mm;
+            height: 54mm;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #ffffff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+          .card-page {
+            width: 85.6mm;
+            height: 54mm;
+            padding: 3mm 4mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+          }
+          .header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1.5px solid #1e3a8a;
+            padding-bottom: 2px;
+          }
+          .header-text { flex: 1; }
+          .school-name { font-size: 8pt; font-weight: 800; color: #1e3a8a; line-height: 1.1; }
+          .school-sub { font-size: 5.5pt; color: #64748b; font-weight: 600; }
+          .status-badge {
+            font-size: 5pt;
+            font-weight: 800;
+            padding: 1px 5px;
+            border-radius: 99px;
+            color: white;
+            background: ${card.status === 'ACTIVE' ? '#166534' : '#991b1b'};
+            text-transform: uppercase;
+          }
+          .body-content {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            margin: 1px 0;
+          }
+          .info-col { flex: 1; display: flex; flex-direction: column; gap: 1px; }
+          .rel-tag {
+            font-size: 5.5pt;
+            font-weight: 800;
+            color: #1e40af;
+            background: #dbeafe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            width: fit-content;
+            text-transform: uppercase;
+          }
+          .holder-name { font-size: 9pt; font-weight: 800; color: #0f172a; line-height: 1.1; margin-top: 1px; }
+          .detail-line { font-size: 5.8pt; color: #475569; }
+          .detail-line b { color: #1e293b; }
+          .footer {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 5.5pt;
+            color: #64748b;
+          }
+          .card-nos { font-family: monospace; font-weight: 700; color: #334155; font-size: 5.8pt; }
+        </style>
+      </head>
+      <body>
+        <div class="card-page">
+          <div class="header">
+            ${logoTag}
+            <div class="header-text">
+              <div class="school-name">TN Happy Kids School</div>
+              <div class="school-sub">RFID Family Access Card</div>
+            </div>
+            <span class="status-badge">${card.status || 'ACTIVE'}</span>
+          </div>
+
+          <div class="body-content">
+            ${photoTag}
+            <div class="info-col">
+              <span class="rel-tag">${relLabel}</span>
+              <div class="holder-name">${card.holder_name}</div>
+              <div class="detail-line" style="margin-top:2px;"><b>Student:</b> ${card.student_name || '—'}</div>
+              <div class="detail-line"><b>Issue:</b> ${card.issue_date ? new Date(card.issue_date).toLocaleDateString('en-IN') : '—'}</div>
+              <div class="detail-line"><b>Expiry:</b> ${card.expiry_date ? new Date(card.expiry_date).toLocaleDateString('en-IN') : '—'}</div>
+            </div>
+          </div>
+
+          <div class="footer">
+            <span class="card-nos">${card.card_number} | ${card.rfid_serial}</span>
+            <span>Return to School: +91 98765 43210</span>
           </div>
         </div>
-        <hr/>
-        <p><b>Name:</b> ${card.holder_name}</p>
-        <p><b>Relation:</b> ${card.relationship?.replace('GUARDIAN2','Guardian 2').replace('GUARDIAN','Guardian 1')}</p>
-        <p><b>Student:</b> ${card.student_name || ''}</p>
-        <p><b>Card No:</b> ${card.card_number}</p>
-        <p><b>RFID:</b> ${card.rfid_serial}</p>
-        <p><b>Issue:</b> ${card.issue_date ? new Date(card.issue_date).toLocaleDateString('en-IN') : '—'}</p>
-        <p><b>Expiry:</b> ${card.expiry_date ? new Date(card.expiry_date).toLocaleDateString('en-IN') : '—'}</p>
-        <p><span class="badge ${(card.status||'').toLowerCase()}">${card.status||'ACTIVE'}</span></p>
-        <hr/>
-        <p style="font-size:7pt;color:#94a3b8;text-align:center">If Found, Return to TN Happy Kids School | +91 98765 43210</p>
-      </div>
-      <script>window.onload=()=>{window.print();window.close();}<\/script>
-      </body></html>
+        <script>window.onload = () => { window.print(); window.close(); };<\/script>
+      </body>
+      </html>
     `);
     printWin.document.close();
   }, [logoUrl]);
