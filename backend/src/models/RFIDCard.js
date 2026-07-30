@@ -292,6 +292,7 @@ async function getCardsByApplicationNumber(applicationNumber) {
         }
       }
       const data = loadFallback();
+      const filtered = targetStudentId ? data.cards.filter((c) => c.student_id === targetStudentId) : data.cards;
       return filtered.map((c) => ({
         ...c,
         student_name: c.student_name || sName,
