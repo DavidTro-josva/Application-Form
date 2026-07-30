@@ -11,7 +11,7 @@ const CardBack = ({ card, studentName }) => {
     phone: '+91 44 2345 6789',
     mobile: '+91 98765 43210',
     email: 'info@tnhappykids.school',
-    website: 'www.tnhappykids.school',
+    website: 'www.tnhappykids.in',
   };
 
   // Generate a simple barcode visual from card_number
