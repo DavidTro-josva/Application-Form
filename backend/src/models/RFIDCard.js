@@ -161,6 +161,7 @@ function generateCardsFallback(studentId) {
     { relation_type: 'FATHER', full_name: 'Father (Offline Mode)' },
     { relation_type: 'MOTHER', full_name: 'Mother (Offline Mode)' },
   ];
+  let studentName = '';
 
   try {
     const admissionsPath = path.join(__dirname, '../../data/fallback_admissions.json');
@@ -168,6 +169,7 @@ function generateCardsFallback(studentId) {
       const fallbackData = JSON.parse(fs.readFileSync(admissionsPath, 'utf8'));
       const student = fallbackData.admissions.find(a => a.studentId === studentId);
       if (student) {
+        studentName = student.studentInfo?.fullName || '';
         mockParents = [];
         if (student.parentInfo?.father?.fullName) {
           mockParents.push({ relation_type: 'FATHER', full_name: student.parentInfo.father.fullName, photo_path: student.parentInfo.father.photoPath });
@@ -175,12 +177,23 @@ function generateCardsFallback(studentId) {
         if (student.parentInfo?.mother?.fullName) {
           mockParents.push({ relation_type: 'MOTHER', full_name: student.parentInfo.mother.fullName, photo_path: student.parentInfo.mother.photoPath });
         }
-        if (student.guardianInfo?.guardianName) {
-          mockParents.push({ relation_type: 'GUARDIAN', full_name: student.guardianInfo.guardianName, photo_path: student.guardianInfo.guardianPhotoPath });
+        
+        // Guardian 1
+        const g1 = student.parentInfo?.guardian || student.guardianInfo;
+        const g1Name = g1?.fullName || g1?.guardianName;
+        const g1Photo = g1?.photoPath || g1?.guardianPhotoPath;
+        if (g1Name) {
+          mockParents.push({ relation_type: 'GUARDIAN', full_name: g1Name, photo_path: g1Photo || null });
         }
-        if (student.guardianInfo?.guardian2Name) {
-          mockParents.push({ relation_type: 'GUARDIAN2', full_name: student.guardianInfo.guardian2Name, photo_path: student.guardianInfo.guardian2PhotoPath });
+
+        // Guardian 2
+        const g2 = student.parentInfo?.guardian2 || student.guardian2Info;
+        const g2Name = g2?.fullName || g2?.guardian2Name;
+        const g2Photo = g2?.photoPath || g2?.guardian2PhotoPath;
+        if (g2Name) {
+          mockParents.push({ relation_type: 'GUARDIAN2', full_name: g2Name, photo_path: g2Photo || null });
         }
+
         if (mockParents.length === 0) {
            mockParents = [
              { relation_type: 'FATHER', full_name: 'Father (Offline Mode)', photo_path: null },
@@ -207,6 +220,7 @@ function generateCardsFallback(studentId) {
     const card = {
       id: data.cards.length + 1,
       student_id: studentId,
+      student_name: studentName,
       relationship: parent.relation_type,
       holder_name: parent.full_name,
       holder_photo: parent.photo_path || null,
@@ -266,8 +280,20 @@ async function getCardsByApplicationNumber(applicationNumber) {
     return rows;
   } catch (error) {
     if (isConnectionError(error)) {
+      const admissionsPath = path.join(__dirname, '../../data/fallback_admissions.json');
+      let targetStudentId = null;
+      let sName = '';
+      if (fs.existsSync(admissionsPath)) {
+        const fallbackData = JSON.parse(fs.readFileSync(admissionsPath, 'utf8'));
+        const student = fallbackData.admissions.find(a => a.applicationNumber === applicationNumber);
+        if (student) {
+          targetStudentId = student.studentId;
+          sName = student.studentInfo?.fullName || '';
+        }
+      }
       const data = loadFallback();
-      return data.cards;
+      const filtered = targetStudentId ? data.cards.filter((c) => c.student_id === targetStudentId) : data.cards;
+      return filtered.map((c) => ({ ...c, student_name: c.student_name || sName }));
     }
     throw error;
   }

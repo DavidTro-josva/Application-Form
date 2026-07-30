@@ -4,292 +4,48 @@
       "studentId": 1,
       "applicationNumber": "HKS-2026-0001",
       "studentInfo": {
-        "fullName": "John Doe",
-        "dob": "2021-05-15",
-        "ageYears": 5,
-        "ageMonths": 2,
-        "gender": "Male",
-        "bloodGroup": "A+",
-        "motherTongue": "English",
-        "photoPath": null
-      },
-      "parentInfo": {
-        "father": {
-          "fullName": "Michael Doe",
-          "occupation": "Engineer",
-          "mobileNumber": "9876543210",
-          "email": null,
-          "aadhaarNumber": "123456789012",
-          "photoPath": null
-        },
-        "mother": {
-          "fullName": "Sarah Doe",
-          "occupation": "Doctor",
-          "mobileNumber": "9876543211",
-          "email": null,
-          "aadhaarNumber": "123456789013",
-          "photoPath": null
-        }
-      },
-      "residentialAddress": {
-        "houseNumber": "12A",
-        "street": "Park Avenue",
-        "area": "Greenwood",
-        "city": "Bangalore",
-        "district": "Bangalore Urban",
-        "state": "Karnataka",
-        "country": "India",
-        "pinCode": "560001"
-      },
-      "uploadedImages": [],
-      "createdAt": "2026-07-29T05:02:08.916Z"
-    },
-    {
-      "studentId": 2,
-      "applicationNumber": "HKS-2026-0002",
-      "studentInfo": {
-        "fullName": "david josva",
-        "dob": "2003-04-12",
-        "ageYears": 23,
-        "ageMonths": 3,
-        "gender": "Male",
-        "bloodGroup": "O+",
-        "motherTongue": "tamil",
-        "photoPath": "/uploads/studentPhoto-1785301489841-409914966.jpeg"
-      },
-      "parentInfo": {
-        "father": {
-          "fullName": "balasingh",
-          "occupation": "Businessman",
-          "mobileNumber": "9400765150",
-          "email": null,
-          "aadhaarNumber": "946175422536",
-          "photoPath": "/uploads/fatherPhoto-1785301489842-74441383.jpeg"
-        },
-        "mother": {
-          "fullName": "thangakani",
-          "occupation": "house wife",
-          "mobileNumber": "6282774495",
-          "email": null,
-          "aadhaarNumber": "356815487592",
-          "photoPath": "/uploads/motherPhoto-1785301489843-823369582.jpeg"
-        }
-      },
-      "residentialAddress": {
-        "houseNumber": "6/190",
-        "street": "ozhalapathy",
-        "area": "ozhalapathy",
-        "city": "chittur",
-        "district": "palakkad",
-        "state": "kerala",
-        "country": "India",
-        "pinCode": "678557"
-      },
-      "uploadedImages": [
-        {
-          "referenceId": 1785301490257,
-          "entityType": "STUDENT_PHOTO",
-          "originalName": "david passport photo.jpeg",
-          "storedPath": "/uploads/studentPhoto-1785301489841-409914966.jpeg",
-          "fileSizeKb": "16.51",
-          "mimeType": "image/jpeg"
-        },
-        {
-          "referenceId": 1785301490636,
-          "entityType": "FATHER_PHOTO",
-          "originalName": "URK22CS2049.jpeg",
-          "storedPath": "/uploads/fatherPhoto-1785301489842-74441383.jpeg",
-          "fileSizeKb": "55.06",
-          "mimeType": "image/jpeg"
-        },
-        {
-          "referenceId": 1785301490701,
-          "entityType": "MOTHER_PHOTO",
-          "originalName": "david photo.jpeg",
-          "storedPath": "/uploads/motherPhoto-1785301489843-823369582.jpeg",
-          "fileSizeKb": "138.30",
-          "mimeType": "image/jpeg"
-        }
-      ],
-      "createdAt": "2026-07-29T05:04:49.866Z"
-    },
-    {
-      "studentId": 3,
-      "applicationNumber": "HKS-2026-0003",
-      "studentInfo": {
-        "fullName": "Ravi",
-        "dob": "2020-03-10",
-        "ageYears": 6,
-        "ageMonths": 4,
+        "fullName": "Beniel",
+        "dob": "2011-11-10",
+        "ageYears": 14,
+        "ageMonths": 8,
         "gender": "Male",
         "bloodGroup": "A+",
         "motherTongue": "Tamil",
-        "photoPath": "/uploads/studentPhoto-1785302964951-236305238.png"
+        "photoPath": "/uploads/studentPhoto-1785383176605-45067567.jpg"
       },
       "parentInfo": {
         "father": {
-          "fullName": "Raja",
-          "occupation": "Business",
-          "mobileNumber": "9876544210",
-          "email": "raja@gmail.com",
-          "aadhaarNumber": "998877665544",
-          "photoPath": "/uploads/fatherPhoto-1785302964978-70601634.jpeg"
-        },
-        "mother": {
-          "fullName": "Rami",
-          "occupation": "Homemaker",
-          "mobileNumber": "1234567890",
-          "email": "rani@gmail.com",
-          "aadhaarNumber": "998877665541",
-          "photoPath": "/uploads/motherPhoto-1785302964978-327932655.jpeg"
-        }
-      },
-      "residentialAddress": {
-        "houseNumber": "31",
-        "street": "periyar street",
-        "area": "ramarkovil",
-        "city": "saravanapatti",
-        "district": "coimbatore",
-        "state": "Tamilnadu",
-        "country": "India",
-        "pinCode": "641035"
-      },
-      "uploadedImages": [
-        {
-          "referenceId": 1785302965197,
-          "entityType": "STUDENT_PHOTO",
-          "originalName": "image_5af7a54c.png",
-          "storedPath": "/uploads/studentPhoto-1785302964951-236305238.png",
-          "fileSizeKb": "1581.15",
-          "mimeType": "image/png"
-        },
-        {
-          "referenceId": 1785302965868,
-          "entityType": "FATHER_PHOTO",
-          "originalName": "david passport photo.jpeg",
-          "storedPath": "/uploads/fatherPhoto-1785302964978-70601634.jpeg",
-          "fileSizeKb": "16.51",
-          "mimeType": "image/jpeg"
-        },
-        {
-          "referenceId": 1785302965689,
-          "entityType": "MOTHER_PHOTO",
-          "originalName": "convacation photo dj.jpeg",
-          "storedPath": "/uploads/motherPhoto-1785302964978-327932655.jpeg",
-          "fileSizeKb": "153.93",
-          "mimeType": "image/jpeg"
-        }
-      ],
-      "createdAt": "2026-07-29T05:29:25.009Z"
-    },
-    {
-      "studentId": 4,
-      "applicationNumber": "HKS-2026-0004",
-      "studentInfo": {
-        "fullName": "asdf",
-        "dob": "2024-04-05",
-        "ageYears": 2,
-        "ageMonths": 3,
-        "gender": "Male",
-        "bloodGroup": "A-",
-        "motherTongue": "tamil",
-        "photoPath": "/uploads/studentPhoto-1785305716622-356845300.jpeg"
-      },
-      "parentInfo": {
-        "father": {
-          "fullName": "uytf",
-          "occupation": "jicxcf",
-          "mobileNumber": "8451147892",
-          "email": null,
-          "aadhaarNumber": "789456123012",
-          "photoPath": "/uploads/fatherPhoto-1785305716626-79772307.jpeg"
-        },
-        "mother": {
-          "fullName": "hyrdsrr",
-          "occupation": "gdsfyu",
-          "mobileNumber": "9765432100",
-          "email": null,
-          "aadhaarNumber": "789561234560",
-          "photoPath": "/uploads/motherPhoto-1785305716650-742313259.jpeg"
-        }
-      },
-      "residentialAddress": {
-        "houseNumber": "6/120",
-        "street": "gydszdxfg",
-        "area": "uhytdzxfg",
-        "city": "gdszdxf",
-        "district": "ffdszdd",
-        "state": "ytrdxffy",
-        "country": "India",
-        "pinCode": "654789"
-      },
-      "uploadedImages": [
-        {
-          "referenceId": 1785305716809,
-          "entityType": "STUDENT_PHOTO",
-          "originalName": "david passport photo.jpeg",
-          "storedPath": "/uploads/studentPhoto-1785305716622-356845300.jpeg",
-          "fileSizeKb": "16.51",
-          "mimeType": "image/jpeg"
-        },
-        {
-          "referenceId": 1785305717592,
-          "entityType": "FATHER_PHOTO",
-          "originalName": "degree certificate.jpeg",
-          "storedPath": "/uploads/fatherPhoto-1785305716626-79772307.jpeg",
-          "fileSizeKb": "1153.78",
-          "mimeType": "image/jpeg"
-        },
-        {
-          "referenceId": 1785305716715,
-          "entityType": "MOTHER_PHOTO",
-          "originalName": "david passport photo.jpeg",
-          "storedPath": "/uploads/motherPhoto-1785305716650-742313259.jpeg",
-          "fileSizeKb": "16.51",
-          "mimeType": "image/jpeg"
-        }
-      ],
-      "createdAt": "2026-07-29T06:15:16.683Z"
-    },
-    {
-      "studentId": 5,
-      "applicationNumber": "HKS-2026-0005",
-      "studentInfo": {
-        "fullName": "david josva",
-        "dob": "2020-04-12",
-        "ageYears": 6,
-        "ageMonths": 3,
-        "gender": "Male",
-        "bloodGroup": "O+",
-        "motherTongue": "Tamil",
-        "photoPath": "/uploads/studentPhoto-1785318558686-342308199.jpeg"
-      },
-      "parentInfo": {
-        "father": {
-          "fullName": "balasingh",
+          "fullName": "Selvasingh",
           "occupation": "Businessman",
-          "mobileNumber": "9400765150",
+          "mobileNumber": "9751086344",
           "email": null,
-          "aadhaarNumber": "948130611723",
-          "photoPath": "/uploads/fatherPhoto-1785318558697-319440423.jpeg"
+          "aadhaarNumber": "987412361590",
+          "photoPath": "/uploads/fatherPhoto-1785383176620-153660961.jpg"
         },
         "mother": {
-          "fullName": "thangakani",
+          "fullName": "Jeniffer",
           "occupation": "housewife",
-          "mobileNumber": "6282774435",
+          "mobileNumber": "9946188952",
           "email": null,
-          "aadhaarNumber": "987432148963",
-          "photoPath": "/uploads/motherPhoto-1785318558700-826858620.jpeg"
+          "aadhaarNumber": "321478969513",
+          "photoPath": "/uploads/motherPhoto-1785383176668-546323854.jpg"
         },
         "guardian": {
-          "fullName": "selvasingh",
-          "occupation": "businessman",
-          "mobileNumber": "9715086344",
+          "fullName": "Jabas",
+          "occupation": "Employee",
+          "mobileNumber": "8547949150",
           "email": null,
-          "aadhaarNumber": "547832569614",
-          "photoPath": "/uploads/guardianPhoto-1785318558715-810042060.jpeg"
+          "aadhaarNumber": "654789321987",
+          "photoPath": "/uploads/guardianPhoto-1785383176686-163232627.jpg"
         },
-        "guardian2": null
+        "guardian2": {
+          "fullName": "Daniel",
+          "occupation": "Employee",
+          "mobileNumber": "7736299150",
+          "email": null,
+          "aadhaarNumber": "948130611723",
+          "photoPath": "/uploads/guardian2Photo-1785383176723-506544011.jpg"
+        }
       },
       "residentialAddress": {
         "houseNumber": "6/190",
@@ -303,39 +59,39 @@
       },
       "uploadedImages": [
         {
-          "referenceId": 1785318559184,
+          "referenceId": 1785383176836,
           "entityType": "STUDENT_PHOTO",
-          "originalName": "david photo.jpeg",
-          "storedPath": "/uploads/studentPhoto-1785318558686-342308199.jpeg",
-          "fileSizeKb": "138.30",
+          "originalName": "IMG-20240124-WA0003.jpg",
+          "storedPath": "/uploads/studentPhoto-1785383176605-45067567.jpg",
+          "fileSizeKb": "359.26",
           "mimeType": "image/jpeg"
         },
         {
-          "referenceId": 1785318559215,
+          "referenceId": 1785383177680,
           "entityType": "FATHER_PHOTO",
-          "originalName": "URK22CS2049.jpeg",
-          "storedPath": "/uploads/fatherPhoto-1785318558697-319440423.jpeg",
-          "fileSizeKb": "55.06",
+          "originalName": "IMG_1892.JPG",
+          "storedPath": "/uploads/fatherPhoto-1785383176620-153660961.jpg",
+          "fileSizeKb": "3027.82",
           "mimeType": "image/jpeg"
         },
         {
-          "referenceId": 1785318559584,
+          "referenceId": 1785383177112,
           "entityType": "MOTHER_PHOTO",
-          "originalName": "convacation photo.jpeg",
-          "storedPath": "/uploads/motherPhoto-1785318558700-826858620.jpeg",
-          "fileSizeKb": "178.14",
+          "originalName": "IMG_1904.JPG",
+          "storedPath": "/uploads/motherPhoto-1785383176668-546323854.jpg",
+          "fileSizeKb": "2074.16",
           "mimeType": "image/jpeg"
         },
         {
-          "referenceId": 1785318559147,
+          "referenceId": 1785383176996,
           "entityType": "GUARDIAN_PHOTO",
-          "originalName": "college id card.jpeg",
-          "storedPath": "/uploads/guardianPhoto-1785318558715-810042060.jpeg",
-          "fileSizeKb": "304.27",
+          "originalName": "IMG_1867.JPG",
+          "storedPath": "/uploads/guardianPhoto-1785383176686-163232627.jpg",
+          "fileSizeKb": "3463.85",
           "mimeType": "image/jpeg"
         }
       ],
-      "createdAt": "2026-07-29T09:49:18.802Z"
+      "createdAt": "2026-07-30T03:46:16.832Z"
     }
   ]
 }

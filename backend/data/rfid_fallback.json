@@ -1,3 +1,66 @@
 {
-  "cards": []
+  "cards": [
+    {
+      "id": 1,
+      "student_id": 1,
+      "relationship": "FATHER",
+      "holder_name": "Selvasingh",
+      "holder_photo": "/uploads/fatherPhoto-1785383176620-153660961.jpg",
+      "card_number": "HKS-CARD-2026-0001",
+      "unique_card_id": "dafebfd4-d819-4bd2-a4d6-76878e0b83e4",
+      "rfid_serial": "RFID-TN-662532",
+      "qr_payload": "{\"system\":\"TN_HAPPY_KIDS_SCHOOL\",\"cardId\":\"dafebfd4-d819-4bd2-a4d6-76878e0b83e4\",\"studentId\":1,\"parentId\":null,\"relationship\":\"FATHER\",\"token\":\"ZGFmZWJmZDQtZDgxOS00YmQyLWE0ZDYtNzY4NzhlMGI4M2U0OjE6SEtT\",\"url\":\"https://tnhappykids.school/verify/dafebfd4-d819-4bd2-a4d6-76878e0b83e4\"}",
+      "issue_date": "2026-07-30",
+      "expiry_date": "2027-07-30",
+      "status": "ACTIVE",
+      "created_at": "2026-07-30T03:46:40.671Z"
+    },
+    {
+      "id": 2,
+      "student_id": 1,
+      "relationship": "MOTHER",
+      "holder_name": "Jeniffer",
+      "holder_photo": "/uploads/motherPhoto-1785383176668-546323854.jpg",
+      "card_number": "HKS-CARD-2026-0002",
+      "unique_card_id": "8cd6bcce-2353-482f-8d92-757ee60b4793",
+      "rfid_serial": "RFID-TN-237611",
+      "qr_payload": "{\"system\":\"TN_HAPPY_KIDS_SCHOOL\",\"cardId\":\"8cd6bcce-2353-482f-8d92-757ee60b4793\",\"studentId\":1,\"parentId\":null,\"relationship\":\"MOTHER\",\"token\":\"OGNkNmJjY2UtMjM1My00ODJmLThkOTItNzU3ZWU2MGI0NzkzOjE6SEtT\",\"url\":\"https://tnhappykids.school/verify/8cd6bcce-2353-482f-8d92-757ee60b4793\"}",
+      "issue_date": "2026-07-30",
+      "expiry_date": "2027-07-30",
+      "status": "ACTIVE",
+      "created_at": "2026-07-30T03:46:40.671Z"
+    },
+    {
+      "id": 3,
+      "student_id": 1,
+      "student_name": "Beniel",
+      "relationship": "GUARDIAN",
+      "holder_name": "Jabas",
+      "holder_photo": "/uploads/guardianPhoto-1785383176686-163232627.jpg",
+      "card_number": "HKS-CARD-2026-0001",
+      "unique_card_id": "d531bb24-0f76-47fe-b298-2ab6967afc15",
+      "rfid_serial": "RFID-TN-599563",
+      "qr_payload": "{\"system\":\"TN_HAPPY_KIDS_SCHOOL\",\"cardId\":\"d531bb24-0f76-47fe-b298-2ab6967afc15\",\"studentId\":1,\"parentId\":null,\"relationship\":\"GUARDIAN\",\"token\":\"ZDUzMWJiMjQtMGY3Ni00N2ZlLWIyOTgtMmFiNjk2N2FmYzE1OjE6SEtT\",\"url\":\"https://tnhappykids.school/verify/d531bb24-0f76-47fe-b298-2ab6967afc15\"}",
+      "issue_date": "2026-07-30",
+      "expiry_date": "2027-07-30",
+      "status": "ACTIVE",
+      "created_at": "2026-07-30T03:50:08.865Z"
+    },
+    {
+      "id": 4,
+      "student_id": 1,
+      "student_name": "Beniel",
+      "relationship": "GUARDIAN2",
+      "holder_name": "Daniel",
+      "holder_photo": "/uploads/guardian2Photo-1785383176723-506544011.jpg",
+      "card_number": "HKS-CARD-2026-0002",
+      "unique_card_id": "584f632b-1b68-4e41-b325-b3753d05ed27",
+      "rfid_serial": "RFID-TN-226709",
+      "qr_payload": "{\"system\":\"TN_HAPPY_KIDS_SCHOOL\",\"cardId\":\"584f632b-1b68-4e41-b325-b3753d05ed27\",\"studentId\":1,\"parentId\":null,\"relationship\":\"GUARDIAN2\",\"token\":\"NTg0ZjYzMmItMWI2OC00ZTQxLWIzMjUtYjM3NTNkMDVlZDI3OjE6SEtT\",\"url\":\"https://tnhappykids.school/verify/584f632b-1b68-4e41-b325-b3753d05ed27\"}",
+      "issue_date": "2026-07-30",
+      "expiry_date": "2027-07-30",
+      "status": "ACTIVE",
+      "created_at": "2026-07-30T03:50:08.865Z"
+    }
+  ]
 }
