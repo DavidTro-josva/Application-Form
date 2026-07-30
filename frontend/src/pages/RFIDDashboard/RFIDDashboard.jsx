@@ -332,7 +332,6 @@ const RFIDDashboard = () => {
 
           <div class="footer">
             <span class="card-nos">${card.card_number} | ${card.rfid_serial}</span>
-            <span>Return to School: +91 98765 43210</span>
           </div>
         </div>
         <script>window.onload = () => { window.print(); window.close(); };<\/script>
