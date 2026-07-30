@@ -9,7 +9,7 @@ const CardBack = ({ card, studentName }) => {
     name: 'TN Happy Kids School',
     address: 'No. 20, Kalianna Gounder Street, K.K. Pudur, Saibaba Colony, Coimbatore – 641 011, Tamil Nadu, India',
     phone: '+91 44 2345 6789',
-    mobile: '+91 98765 43210',
+    mobile: '+91 95149 00070',
     email: 'info@tnhappykids.school',
     website: 'www.tnhappykids.in',
   };
@@ -41,7 +41,7 @@ const CardBack = ({ card, studentName }) => {
       {/* Emergency contact */}
       <div className="card-back-section">
         <div className="cbs-title">🚨 Emergency Contact</div>
-        <div className="cbs-content">{SCHOOL.mobile} &nbsp;|&nbsp; {SCHOOL.phone}</div>
+        <div className="cbs-content">{SCHOOL.mobile}</div>
       </div>
 
       {/* School contact */}
