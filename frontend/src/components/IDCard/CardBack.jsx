@@ -7,7 +7,7 @@ import React from 'react';
 const CardBack = ({ card, studentName }) => {
   const SCHOOL = {
     name: 'TN Happy Kids School',
-    address: 'No. 12, School Street, Anna Nagar, Chennai – 600 040, Tamil Nadu, India',
+    address: 'No. 20, Kalianna Gounder Street, K.K. Pudur, Saibaba Colony, Coimbatore – 641 011, Tamil Nadu, India',
     phone: '+91 44 2345 6789',
     mobile: '+91 98765 43210',
     email: 'info@tnhappykids.school',
